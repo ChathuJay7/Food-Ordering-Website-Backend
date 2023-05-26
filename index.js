@@ -25,17 +25,23 @@ mongoose
 // rouuter and middlewares
 
 // middlewares
+
+// server is on port 5000. client is on port 3000. We are going to get a cors error!. But cors() removes that error
+app.use(cors())
+
 // those two middlewares mae req.body accessible, otherwise it would be undefined
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 // routes
+app.use('/images', express.static('public/images'))
+app.use('/images', express.static('public/images'))
 app.use('/auth', authController)
 app.use('/product', productController)
 app.use('/upload', uploadController)
 
-// server is on port 5000. client is on port 3000. We are going to get a cors error!. But cors() removes that error
-app.use(cors())
+
 
 // start server
 app.listen(process.env.PORT, () => console.log('Server has been started successfully'))
+
